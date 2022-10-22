@@ -25,7 +25,7 @@
                     <small></small>
                 </div>
                 <p id="error" style="color: red;">${ERROR}</p>
-                <div class="g-recaptcha" data-sitekey="6LfF5XghAAAAAIA4Dz7k4jWLGvDzhKd2zj7GMeDV"></div>
+                <div class="g-recaptcha" data-sitekey="YOUR-RECAPTCHA-KEY"></div>
                 <input name="action" value="Login" hidden=""/>
                 <input type="submit" value="Login"/>
 
@@ -61,7 +61,7 @@
                 </div> 
 
                 <a class = "position-absolute custom-horizontal-center" style ="top: 30%" href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8084/Tea-Shopping/GoogleSignInServlet&response_type=code
-                   &client_id=485601135202-f3hqdo4qrbdkd1ql5qfv9jbot7ksjjrq.apps.googleusercontent.com&approval_prompt=force">
+                   &client_id=YOUR_GOOGLE_CLIENTKEY&approval_prompt=force">
                     <div class = "horizontal-center hover-white-image" style = "top: 80px; width: 80px; height: 80px; margin:0 180px;"> 
                         <img style ="width: 50%; height: 50%;" src = "img/GoogleIcon.png"> 
                     </div>
