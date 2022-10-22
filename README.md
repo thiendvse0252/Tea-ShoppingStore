@@ -4,6 +4,7 @@ Project built by Servlet, JSP, sql server, reCaptcha - use MVC2 model
 
 A tea store webapp with CRUD functionalities: login( by database and google account), log out, check the captcha, add to cart, payment, manage user account<br>
 Description:<br>
+• Team Size: 2 <br>
 • My role: back-end<br>
 • Technology: Java, JSP/Servlet, SQL Server, JDBC
 
@@ -39,7 +40,9 @@ input type="submit" name="action" value="Login"
 ## 3.Login Google 
 
 - Register Google Key: https://console.cloud.google.com/apis/dashboard
-
+- Create Oauth Client ID: https://console.cloud.google.com/apis/credentials/oauthclient and put url of GoogleSignInServlet in Authorized redirect URIs
+- Google Login Token and GoogleSignInServlet url are put in Controllers.Authenication.GoogleSignIn/Constant
+- Must not change properties in GoogleDTO.java to get all account's information
 Note:
 
 - to get a full profile of user, please change to scope to "scope=email%20profile%20openid"
@@ -53,7 +56,7 @@ Note:
 
 - I deleted the key in the demo folder. If you need to run it, please register for a new key.
 
-## 6.Verify email
+#### Contact me if you have any problems
 
 # Please give me a star if this project helps your assignment
 
