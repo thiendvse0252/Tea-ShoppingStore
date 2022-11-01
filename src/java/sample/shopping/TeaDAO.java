@@ -270,7 +270,7 @@ public class TeaDAO {
                 int value = ptm.executeUpdate();
                 check = value > 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         } finally {
             if (ptm != null) {
                 ptm.close();
