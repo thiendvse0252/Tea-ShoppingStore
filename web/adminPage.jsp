@@ -38,10 +38,10 @@
         <form action="MainController">
             <input type="submit" name="action" value="Logout" />
         </form>
+        <a href="addProduct.jsp">Create Product</a>
 
     <center> 
         <button> <a href="home.jsp" style="text-decoration: none; color: #08609a;">Home</a> </button>
-
     </center>
 
 

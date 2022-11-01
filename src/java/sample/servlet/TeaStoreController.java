@@ -25,30 +25,30 @@ public class TeaStoreController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-      String url = "shopping.jsp";
+        String url = "shopping.jsp";
       try{
             String btAction = request.getParameter("teaStore");
-            
+
             TeaDAO t = new TeaDAO();
             List<Tea> list = t.getAllProduct();
             request.setAttribute("listT", list);   //show all of products
-            
+
             if (btAction == null){
-            request.setAttribute("FirstTime", true);
+                request.setAttribute("FirstTime", true);
             }
-            
+
             String SearchValue = request.getParameter("txtSearch").trim();
             request.setAttribute("SearchValue", SearchValue);
             ArrayList<Tea> tea = new ArrayList<>();
             if (!SearchValue.equals("")){
                 tea = (ArrayList<Tea>) TeaDAO.getProductByID(SearchValue);
             }
-            
+
             request.setAttribute("Tea", tea);
-            
+
       } finally{
-          request.getRequestDispatcher(url).forward(request, response);
-      }
+            request.getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
