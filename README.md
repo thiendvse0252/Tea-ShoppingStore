@@ -1,12 +1,11 @@
 # Java Web Application 
 
-Project built by Servlet, JSP, sql server, reCaptcha - use MVC2 model
-
-A tea store webapp with CRUD functionalities: login( by database and google account), log out, check the captcha, add to cart, payment, manage user account<br>
+A shopping web app which sells tea, Web users can view and search for the tea, add to cart and check out. The admin can manage the products in the store, manage user accounts <br>
 Description:<br>
 • Team Size: 2 <br>
 • My role: back-end<br>
-• Technology: Java, JSP/Servlet, SQL Server, JDBC
+• Techs: JavaEE, JSP/Servlet, SQL Server, JDBC - MVC2 model
+• CRUD functionalities, login(database and google account), log out, check the captcha, add to cart, check out, payment(not complete yet).
 
 Note:
 
