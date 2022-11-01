@@ -1,11 +1,10 @@
 # Java Web Application 
 
-A shopping web app which sells tea, Web users can view and search for the tea, add to cart and check out. The admin can manage the products in the store, manage user accounts <br>
-Description:<br>
-• Team Size: 2 <br>
-• My role: back-end<br>
-• Techs: JavaEE, JSP/Servlet, SQL Server, JDBC - MVC2 model
-• CRUD functionalities, login(database and google account), log out, check the captcha, add to cart, check out, payment(not complete yet).
+A shopping web app that sells tea, Web users can view and search for the tea, add to cart and check out. The admin can manage the products in the store, and manage user accounts <br>
+
+• Roles: back-end, manage source code repo<br>
+• Techs: JavaEE, JSP/Servlet, SQL Server, JDBC, Apache Tomcat, Unit Test TDD, VCS
+• CRUD functionalities, login(database and google account), log out, check the captcha, add to cart, check out, payment(not complete yet) - MVC 2 pattern
 
 Note:
 
@@ -28,23 +27,23 @@ input type="submit" name="action" value="Login"
  input value="Login" name="action" hidden="" "\n"
  input type="submit" value="Submit"
 
-## 2.Payment (not recommend)
+## 2.Payment (not recommended)
 
-- This module is not implemented because it has no chance to run in the
+- This module is not implemented because it cannot run in 
   production mode. If you want to deploy to production mode,
-  you have to provide them your Business No, tax receipts, and so on. Moreover, running a risky app is never the best choice for a payment method.
+  you have to provide them with your Business No, tax receipts, and so on. Moreover, running a risky app is never the best choice for a payment method.
 
-- The Ugly : https://www.youtube.com/watch?v=9O8WPgeg-g4
+- The Ugly: https://www.youtube.com/watch?v=9O8WPgeg-g4
 
 ## 3.Login Google 
 
 - Register Google Key: https://console.cloud.google.com/apis/dashboard
-- Create Oauth Client ID: https://console.cloud.google.com/apis/credentials/oauthclient and put url of GoogleSignInServlet in Authorized redirect URIs
-- Google Login Token and GoogleSignInServlet url are put in Controllers.Authenication.GoogleSignIn/Constant
-- Must not change properties in GoogleDTO.java to get all account's information
+- Create OAuth Client ID: https://console.cloud.google.com/apis/credentials/oauthclient and put the URL of GoogleSignInServlet in Authorized redirect URIs
+- Google Login Token and GoogleSignInServlet URL are put in Controllers.Authentication.GoogleSignIn/Constant
+- Must not change properties in GoogleDTO.java to get all account information
 Note:
 
-- to get a full profile of user, please change to scope to "scope=email%20profile%20openid"
+- to get a complete profile of user, please change to scope to "scope=email%20profile%20openid"
 
 ## 4.Log4j (not recommend)
 
