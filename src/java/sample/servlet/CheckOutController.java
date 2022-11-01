@@ -6,20 +6,26 @@
 package sample.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.shopping.Cart;
+import sample.shopping.OrderDetailDAO;
+import sample.shopping.OrderedDAO;
 import sample.shopping.Tea;
 import sample.user.UserDTO;
 
 public class CheckOutController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NamingException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "viewCart.jsp";
         try {
@@ -31,15 +37,15 @@ public class CheckOutController extends HttpServlet {
                 UserDTO account = (UserDTO) session.getAttribute("LOGIN_USER");
 
                 String OrderID = null;
-//                int TotalPayment = OrderedDAO.TotalPayment(cart);
-//                try {
-//                    OrderID = OrderedDAO.addOrder(account.getUsername(), TotalPayment);
-//                } catch (ClassNotFoundException | SQLException | NamingException ex) {
-//                }
-//                try {
-//                    OrderDetailDAO.addOrderDetails(OrderID, cart);
-//                } catch (ClassNotFoundException | SQLException | NamingException ex) {
-//                }
+                int TotalPayment = OrderedDAO.TotalPayment(cart);
+                try {
+                    OrderID = OrderedDAO.addOrder(account.getUserID(), TotalPayment);
+                } catch (ClassNotFoundException | SQLException | NamingException ex) {
+                }
+                try {
+                    OrderDetailDAO.addOrderDetails(OrderID, cart);
+                } catch (ClassNotFoundException | SQLException | NamingException ex) {
+                }
                 request.setAttribute("Success_CheckOut", true);
             }
         } finally {
@@ -59,7 +65,13 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,7 +85,13 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

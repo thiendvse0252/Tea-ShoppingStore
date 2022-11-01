@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.shopping.TeaDAO;
 
-
 public class AddProController extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "#";
+        String url = "addProduct.jsp";
         try {
             String pid = request.getParameter("productID");
             String name = request.getParameter("name");
@@ -29,18 +28,18 @@ public class AddProController extends HttpServlet {
             String cate = request.getParameter("category");
             TeaDAO tea = new TeaDAO();
             boolean check = tea.checkDuplicate(pid);
-            if(check){
+            if (check) {
                 request.setAttribute("ERROR", "Duplicate product ID!");
                 request.getRequestDispatcher("addProduct.jsp").forward(request, response);
-            }else{
+            } else {
                 boolean add = tea.insert(pid, name, price, qty, image, cate);
-                if(add){
+                if (add) {
                     url = "shopping.jsp";
-                }else{
+                } else {
                     request.setAttribute("FFF", "Can not insert product!");
                     request.getRequestDispatcher("addProduct.jsp").forward(request, response);
                 }
-                
+
             }
         } catch (SQLException e) {
             log("Error at AddProController: " + e.toString());

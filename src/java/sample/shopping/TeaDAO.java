@@ -22,7 +22,7 @@ public class TeaDAO {
     private static final String CHECK = "SELECT productID from tblProduct WHERE productID = ?";
     private static final String INSERT = "INSERT INTO tblProduct (productID, name, price, quantity, images, categoryID) VALUES(?,?,?,?,?,?)";
     private static final String REMOVE = "DELETE tblProduct WHERE productID = ?";
-    
+
     public List<Category> getAllCategory() throws SQLException {
         List<Category> list = new ArrayList<>();
         Connection conn = null;
@@ -40,7 +40,7 @@ public class TeaDAO {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         } finally {
             if (rs != null) {
                 rs.close();
@@ -54,7 +54,7 @@ public class TeaDAO {
         }
         return list;
     }
-    
+
     public boolean insert(String id, String name, String price, String quantity, String images, String category) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -72,7 +72,7 @@ public class TeaDAO {
                 ptm.setString(6, category);
                 check = ptm.executeUpdate() > 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         } finally {
             if (ptm != null) {
                 ptm.close();
@@ -100,7 +100,7 @@ public class TeaDAO {
             while (rs.next()) {
                 list.add(new Tea(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6)));
             }
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         } finally {
             if (rs != null) {
                 rs.close();
@@ -114,7 +114,7 @@ public class TeaDAO {
         }
         return list;
     }
-    
+
     public boolean checkDuplicate(String id) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -130,7 +130,7 @@ public class TeaDAO {
                     check = true;
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
 
         } finally {
             if (rs != null) {
@@ -167,7 +167,7 @@ public class TeaDAO {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (SQLException | NamingException e) {
         } finally {
             if (rs != null) {
                 rs.close();
@@ -218,6 +218,46 @@ public class TeaDAO {
 
     }
 
+    public static ArrayList<Tea> getTeas(String ID) throws
+            SQLException, NamingException, ClassNotFoundException {
+        String SQLQuery = "SELECT productID, name, price, quantity, images, categoryID "
+                + "FROM tblProduct "
+                + "WHERE productID like ?";
+        ArrayList<Tea> tea = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (ID.equalsIgnoreCase("all")) {
+                ID = "";
+            }
+            ps = conn.prepareCall(SQLQuery);
+            ps.setString(1, "%" + ID + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Tea t = new Tea(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+                tea.add(t);
+
+            }
+        } catch (SQLException e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return tea;
+
+    }
+
     public boolean removeTea(String id) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -231,7 +271,7 @@ public class TeaDAO {
                 check = value > 0;
             }
         } catch (Exception e) {
-        } finally{
+        } finally {
             if (ptm != null) {
                 ptm.close();
             }
